@@ -8,8 +8,8 @@ export default class Document extends NextDocument {
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <meta charSet="utf-8" />
-          <meta name="og:description" content="republika - isin tracker" />
-          <meta name="description" content="republika - isin tracker" />
+          <meta name="og:description" content="republic - isin tracker" />
+          <meta name="description" content="republic - isin tracker" />
         </Head>
         <body>
           <ColorModeScript initialColorMode="dark" />
