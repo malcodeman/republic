@@ -6,22 +6,30 @@ import {
   Flex,
   Grid,
   Heading,
+  Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useLocalStorageValue } from "@react-hookz/web";
-import { map } from "ramda";
+import { map, filter, includes } from "ramda";
 
 import { Isin } from "../types";
+
+import constants from "../lib/constants";
 
 import IsinForm from "../components/IsinForm";
 import ColorModeToggle from "../components/ColorModeToggle";
 import IsinDetails from "../components/IsinDetails";
+import IsinTag from "../components/IsinTag";
 
 const Home: NextPage = () => {
-  const [isins] = useLocalStorageValue<undefined | Isin[]>("isins", [], {
-    initializeWithStorageValue: false,
-  });
+  const [isins, setIsins] = useLocalStorageValue<undefined | Isin[]>(
+    "isins",
+    [],
+    {
+      initializeWithStorageValue: false,
+    }
+  );
   const hasIsins = isins?.length;
   const gridTemplateColumns = [
     "1fr",
@@ -32,6 +40,22 @@ const Home: NextPage = () => {
     "rgba(0,0,0,0.1)",
     "rgba(255,255,255,0.1)"
   );
+  const filteredCommon = isins
+    ? filter(
+        (item) =>
+          !includes(
+            item.id,
+            map((isin) => isin.id, isins)
+          ),
+        constants.COMMON_ISINS
+      )
+    : [];
+
+  const handleOnAdd = (id: string) => {
+    if (isins) {
+      setIsins([...isins, { id }]);
+    }
+  };
 
   return (
     <Grid
@@ -45,6 +69,20 @@ const Home: NextPage = () => {
               Republic Tracker
             </Heading>
             <IsinForm />
+            <Stack spacing="2" direction={["column", "column", "row"]}>
+              {map(
+                (item) => (
+                  <IsinTag
+                    key={item.id}
+                    id={item.id}
+                    icon={item.icon}
+                    label={item.label}
+                    onClick={handleOnAdd}
+                  />
+                ),
+                filteredCommon
+              )}
+            </Stack>
           </Box>
         </Container>
       </Center>

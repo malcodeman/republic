@@ -40,7 +40,7 @@ function IsinForm() {
       if (isins) {
         const exists = find((item) => equals(item.id, values.isin), isins);
         if (exists) {
-          form.setError("isin", { message: "ISIN already connected." });
+          form.setError("isin", { message: "ISIN already connected" });
         } else {
           setIsins([...isins, { id: values.isin }]);
           form.reset();
@@ -59,7 +59,10 @@ function IsinForm() {
   };
 
   return (
-    <form onSubmit={form.handleSubmit(handleOnSubmit)}>
+    <form
+      style={{ marginBottom: "var(--chakra-space-4)" }}
+      onSubmit={form.handleSubmit(handleOnSubmit)}
+    >
       <FormControl isInvalid={Boolean(form.formState.errors.isin)} mb="2">
         <FormLabel>Isin</FormLabel>
         <Input
