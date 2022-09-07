@@ -20,7 +20,7 @@ const defaultValues = {
 };
 const schema = yup
   .object({
-    isin: yup.string().required("ISIN is required"),
+    isin: yup.string().required("ISIN is required").max(12, "ISIN is too long"),
   })
   .required();
 
