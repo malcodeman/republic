@@ -12,13 +12,21 @@
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@hookform/resolvers": "^2.9.7",
+    "@react-hookz/web": "^15.1.0",
+    "axios": "^0.27.2",
     "framer-motion": "^7.2.1",
     "next": "12.2.5",
+    "ramda": "^0.28.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2",
+    "react-icons": "^4.4.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "18.7.15",
+    "@types/ramda": "^0.28.15",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
     "eslint": "8.23.0",
